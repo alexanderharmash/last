@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Decimal from 'decimal.js';
 
 import './index.css';
@@ -16,7 +15,7 @@ button.addEventListener('click', () => {
   }
   const [fOp, sOp] = form.querySelectorAll('input');
   let correct = true;
-  if (!Number(fOp.value)) {
+  if (fOp.value === '' || isNaN(Number(fOp.value))) {
     correct = false;
     fOp.insertAdjacentHTML(
       'afterEnd',
@@ -25,7 +24,7 @@ button.addEventListener('click', () => {
     </div>`
     );
   }
-  if (!Number(sOp.value)) {
+  if (sOp.value === '' || isNaN(Number(sOp.value))) {
     correct = false;
     sOp.insertAdjacentHTML(
       'afterEnd',
@@ -44,14 +43,3 @@ button.addEventListener('click', () => {
     );
   }
 });
-
-function component() {
-  const element = document.createElement('div');
-
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());
